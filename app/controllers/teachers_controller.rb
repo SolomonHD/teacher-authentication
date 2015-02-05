@@ -24,7 +24,8 @@ class TeachersController < ApplicationController
     @teacher = Teacher.new(teacher_params)
 
     if @teacher.save
-      redirect_to @teacher, notice: 'Teacher was successfully created.'
+      session[:teacher_id] = @teacher.id
+      redirect_to root_url, notice: 'Teacher was successfully created.'
     else
       render :new
     end
